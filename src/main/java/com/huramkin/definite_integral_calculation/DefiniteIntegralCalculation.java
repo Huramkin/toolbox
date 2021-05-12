@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 
 public class DefiniteIntegralCalculation {
-    public static void main(String[] args) {
+    public static void app() {
         BigDecimal upper = new BigDecimal(2);//上限
         BigDecimal lower = new BigDecimal(0);//下限
         BigDecimal step = new BigDecimal(0.001);
