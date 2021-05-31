@@ -3,17 +3,28 @@ package com.huramkin.definite_integral_calculation;
 微积分:定积分功能实现部分
  */
 
+import com.huramkin.math_function.Function;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.util.Arrays;
 
 public class DefiniteIntegralCalculation {
-    public static void app() {
-        BigDecimal upper = new BigDecimal(2);//上限
-        BigDecimal lower = new BigDecimal(0);//下限
-        BigDecimal step = new BigDecimal(0.001);
-        BigDecimal piece = upper.subtract(lower).divide(step,100,RoundingMode.HALF_UP);//分为4片
+    /**
+     *
+     * @param dupper DefiniteIntegralCalculation Upper
+     * @param dlower DefiniteIntegralCalculation Lower
+     * @param dstep DefiniteIntegralCalculation Cutting interval
+     *
+     * @return result
+     */
+    public  static String definiteIntegralCalculation(Function function, double dupper, double dlower, double dstep) {
+        BigDecimal upper = new BigDecimal(dupper);//上限
+        BigDecimal lower = new BigDecimal(dlower);//下限
+        BigDecimal step = new BigDecimal(dstep);//间隔
+        BigDecimal piece = upper.subtract(lower).divide(step,100,RoundingMode.HALF_UP);//分为4片,保留100位小数
         //System.out.println(piece);
-        BigDecimal[] x = new BigDecimal[piece.add(new BigDecimal(1)).intValue()];
+        BigDecimal[] x = new BigDecimal[piece.add(new BigDecimal(1)).intValue()];//定义x的数组长度
         x[0] = lower;
         x[x.length - 1] = upper;
         BigDecimal forwordStep = new BigDecimal(0);
@@ -21,15 +32,9 @@ public class DefiniteIntegralCalculation {
             forwordStep = forwordStep.add(step);
             x[i] = forwordStep;
         }
-        //System.out.println(Arrays.toString(x));
-        BigDecimal[] y = new BigDecimal[x.length];
 
-        for (int i = 0; i < x.length; i++) {//函数书写给y赋值部分
-            double temp = 0;
-            temp = Math.pow(x[i].doubleValue(),9);
-            temp = temp+x[i].doubleValue();
-            y[i] = new BigDecimal(temp) ;//为函数y=x^2+x批量赋值
-        }
+        //BigDecimal[] y = mathFun(x);
+        BigDecimal[] y = function.mathFun(x);
         //odd&even
         BigDecimal odd = new BigDecimal(0);//奇数处理
         BigDecimal even = new BigDecimal(0);
@@ -47,8 +52,21 @@ public class DefiniteIntegralCalculation {
         BigDecimal oddeven = odd_deal.add(even_deal).add(y[0]).add(y[x.length -1 ]);
         //System.out.println(oddeven+" "+even_deal+" "+oddeven);
         BigDecimal para =  step.multiply(oddeven).divide(new BigDecimal(3),5,RoundingMode.HALF_UP);
-        System.out.println("积分结果是 "+para);
-        //System.out.println(Arrays.toString(y));
+        //System.out.println("积分结果是 "+para);
+        String definiteIntegralCalculation_result = para.toString();
+        return definiteIntegralCalculation_result;
+
     }
+
+    /* static BigDecimal[] mathFun(BigDecimal[] x){//Funcation示例
+        BigDecimal[] y = new BigDecimal[x.length];
+        for (int i = 0; i < x.length; i++) {//函数书写给y赋值部分
+            double temp = 0;
+            temp = Math.pow(x[i].doubleValue(),9);
+            temp = temp+x[i].doubleValue();
+            y[i] = new BigDecimal(temp) ;//为函数y=x^2+x批量赋值
+        }
+        return y;
+    }*/
 }
 
