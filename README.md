@@ -19,11 +19,9 @@ Toolbox is a Tools collection.
 
 ## TODO
 
-[x] sm.ms upload
-
-[x] Calculate definite integral
-
-[] ..
+- [x] sm.ms upload
+- [x] Calculate definite integral
+- [ ] ..
 
 
 
