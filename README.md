@@ -2,6 +2,8 @@
 
 Toolbox is a Tools collection.
 
+[![javadoc](https://javadoc.io/badge2/com.huramkin.toolbox/toolbox/javadoc.svg)](https://javadoc.io/doc/com.huramkin.toolbox/toolbox)
+
 ## How do I use it?
 
 ```angular2html
