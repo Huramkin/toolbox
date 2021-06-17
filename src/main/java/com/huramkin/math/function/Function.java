@@ -1,4 +1,4 @@
-package com.huramkin.math_function;
+package com.huramkin.math.function;
 
 import java.math.BigDecimal;
 

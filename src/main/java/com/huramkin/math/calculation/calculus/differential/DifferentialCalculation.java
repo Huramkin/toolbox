@@ -1,6 +1,6 @@
-package com.huramkin.differential;
+package com.huramkin.math.calculation.calculus.differential;
 
-import com.huramkin.math_function.Function;
+import com.huramkin.math.function.Function;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;

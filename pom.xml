@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.huramkin.toolbox</groupId>
   <artifactId>toolbox</artifactId>
-  <version>1.0.0.1.3-RELEASE</version>
+  <version>1.0.0.1.5-RELEASE</version>
   <packaging>jar</packaging>
   <name>toolbox</name>
   <description>a simple toolbox</description>

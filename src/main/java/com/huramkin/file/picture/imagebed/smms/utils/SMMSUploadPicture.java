@@ -7,33 +7,66 @@ import okhttp3.*;
 import java.io.*;
 
 public class SMMSUploadPicture {
-    public static String simpleUploadPicture (String token, InputStream inputStream,String filename) throws IOException {
-        SMMSResponseBody smmsResponseBody = uploadPicture(token, inputStream,filename);
-        return smmsResponseBody.getData().getUrl();
+    private String token;
+
+    private static SMMSUploadPicture instance = new SMMSUploadPicture();
+
+    private SMMSUploadPicture(){}
+    public static SMMSUploadPicture getInstance(String token){
+        if (null==token || "".equals(token)){
+            System.err.println("MUST INPUT SMMS TOKEN");
+            return instance;
+        }
+        return instance.setToken(token);
     }
 
-    public static String simpleUploadPicture (String token, File file) throws IOException {
-        SMMSResponseBody smmsResponseBody = uploadPicture(token, file);
+    private SMMSUploadPicture setToken(String token) {
+        this.token = token;
+        return this;
+    }
+
+
+
+    public String simpleUploadPicture (InputStream inputStream, String filename) throws IOException {
+        SMMSResponseBody smmsResponseBody = uploadPicture(inputStream,filename);
         if (null == smmsResponseBody.getData()){
-            return smmsResponseBody.getMessage();
+            String message = smmsResponseBody.getMessage();
+            String[] resultWords = message.split(" ");
+            String resultDuplicateWord = resultWords[resultWords.length - 1];
+            //System.out.println("Duplicate pictures uploaded");
+            return resultDuplicateWord;
         }
         return smmsResponseBody.getData().getUrl();
     }
 
-    public static SMMSResponseBody uploadPicture(String token, InputStream inputStream,String filename) throws IOException {
+    public String simpleUploadPicture (File file) throws IOException {
+        SMMSResponseBody smmsResponseBody = uploadPicture(file);
+        if (null == smmsResponseBody.getData()){
+            String message = smmsResponseBody.getMessage();
+            String[] resultWords = message.split(" ");
+            String resultDuplicateWord = resultWords[resultWords.length - 1];
+            //System.out.println("Duplicate pictures uploaded");
+            return resultDuplicateWord;
+        }
+        return smmsResponseBody.getData().getUrl();
+    }
+
+    public SMMSResponseBody uploadPicture(InputStream inputStream,String filename) throws IOException {
         File file = new File(filename);
-        FileOutputStream fileOutputStream = new FileOutputStream(filename);
+        FileOutputStream fileOutputStream = new FileOutputStream(file);
         Integer read = null;
         byte[] bytes = new byte[1024];
         while ((read = inputStream.read(bytes)) != -1) {
             fileOutputStream.write(bytes, 0, read);
         }
-        SMMSResponseBody smmsResponseBody = uploadPicture(token, file);
+        SMMSResponseBody smmsResponseBody = uploadPicture(file);
+        fileOutputStream.close();
+        inputStream.close();
         file.delete();
         return smmsResponseBody;
     }
 
-    public static SMMSResponseBody uploadPicture(String token, File file) throws IOException {
+    public SMMSResponseBody uploadPicture(File file) throws IOException {
         OkHttpClient client = new OkHttpClient().newBuilder()
                 .build();
         RequestBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)

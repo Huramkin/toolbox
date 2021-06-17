@@ -1,13 +1,12 @@
-package com.huramkin.definite_integral_calculation;
+package com.huramkin.math.calculation.calculus.definite_integral_calculation;
 /*
 微积分:定积分功能实现部分
  */
 
-import com.huramkin.math_function.Function;
+import com.huramkin.math.function.Function;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
-import java.util.Arrays;
 
 public class DefiniteIntegralCalculation {
     /**
