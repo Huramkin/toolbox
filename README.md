@@ -3,6 +3,10 @@
 Toolbox is a Tools collection.
 
 [![javadoc](https://javadoc.io/badge2/com.huramkin.toolbox/toolbox/javadoc.svg)](https://javadoc.io/doc/com.huramkin.toolbox/toolbox)
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.huramkin.toolbox/toolbox/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.huramkin.toolbox/toolbox)
+[![License](http://img.shields.io/:license-apache-brightgreen.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
+[![Coverage Status](https://coveralls.io/repos/github/Huramkin/toolbox/badge.svg?branch=master)](https://coveralls.io/github/Huramkin/toolbox?branch=master)
+[![Project Stats](https://www.openhub.net/p/Huramkintoolbox/widgets/project_thin_badge.gif)](https://www.openhub.net/p/Huramkintoolbox)
 
 ## How do I use it?
 
@@ -13,7 +17,6 @@ Toolbox is a Tools collection.
     <version>${toolbox.version}</version>
 </dependency>
 ```
-[The latest version of this](https://mvnrepository.com/artifact/com.huramkin.toolbox/toolbox)
 
 ## Wiki
 
